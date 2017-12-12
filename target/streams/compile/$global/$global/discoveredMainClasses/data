@@ -1,1 +1,1 @@
-["ETLIntoHive","GenerateTripHistory"]
+["ETLIntoHive","ExtractJSONFromHiveTable","GenerateTripHistory"]
