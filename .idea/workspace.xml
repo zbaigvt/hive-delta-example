@@ -2,40 +2,52 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45236dc1-e14c-4567-b873-cc8c87966d34" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/scala/ExtractJSONFromHiveTable.scala" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/ExtractJSONFromHiveTable$$anonfun$1.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/ExtractJSONFromHiveTable$.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/ExtractJSONFromHiveTable.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/workingwithhive$sources/0.1/resolved.xml.properties" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/workingwithhive$sources/0.1/resolved.xml.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-compile-internal.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-compile.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-optional.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-plugin.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-pom.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-provided.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-runtime-internal.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-runtime.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-scala-tool.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-test-internal.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-test.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/streams/$global/$global/dumpStructure/$global/streams/out" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/streams/$global/assemblyOption/$global/streams/assembly/df0c7a8388725eee36937626414ef5061f2b10f1_dir/ExtractJSONFromHiveTable$$anonfun$1.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/streams/$global/assemblyOption/$global/streams/assembly/df0c7a8388725eee36937626414ef5061f2b10f1_dir/ExtractJSONFromHiveTable$.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/streams/$global/assemblyOption/$global/streams/assembly/df0c7a8388725eee36937626414ef5061f2b10f1_dir/ExtractJSONFromHiveTable.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/streams/out" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/workingwithhive.iml" afterPath="$PROJECT_DIR$/.idea/modules/workingwithhive.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.11/WorkingwithHive.jar" afterPath="$PROJECT_DIR$/target/scala-2.11/WorkingwithHive.jar" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ExtractJSONFromHiveTable.scala" afterPath="$PROJECT_DIR$/src/main/scala/ExtractJSONFromHiveTable.scala" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/WorkingwithHive.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/ExtractJSONFromHiveTable$$anonfun$1.class" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/ExtractJSONFromHiveTable$$anonfun$1.class" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/ExtractJSONFromHiveTable$.class" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/ExtractJSONFromHiveTable$.class" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/ExtractJSONFromHiveTable.class" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/ExtractJSONFromHiveTable.class" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/workingwithhive$sources/0.1/resolved.xml.properties" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/workingwithhive$sources/0.1/resolved.xml.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/workingwithhive_2.11/0.1/resolved.xml.properties" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/workingwithhive_2.11/0.1/resolved.xml.properties" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/workingwithhive_2.11/0.1/resolved.xml.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/workingwithhive_2.11/0.1/resolved.xml.xml" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-compile-internal.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-compile.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-optional.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-plugin.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-pom.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-provided.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-runtime-internal.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-runtime.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-scala-tool.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-test-internal.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive$sources-test.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-compile-internal.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-compile-internal.xml" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-compile.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-compile.xml" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-optional.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-optional.xml" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-plugin.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-plugin.xml" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-pom.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-pom.xml" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-provided.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-provided.xml" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-runtime-internal.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-runtime-internal.xml" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-runtime.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-runtime.xml" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-scala-tool.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-scala-tool.xml" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-test-internal.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-test-internal.xml" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-test.xml" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-workingwithhive_2.11-test.xml" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/$global/dumpStructure/$global/streams/out" afterPath="" />
       <change beforePath="$PROJECT_DIR$/target/streams/$global/assembly/$global/streams/assembly-inputs" afterPath="$PROJECT_DIR$/target/streams/$global/assembly/$global/streams/assembly-inputs" />
       <change beforePath="$PROJECT_DIR$/target/streams/$global/assembly/$global/streams/out" afterPath="$PROJECT_DIR$/target/streams/$global/assembly/$global/streams/out" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/assemblyOption/$global/streams/assembly/df0c7a8388725eee36937626414ef5061f2b10f1_dir/ExtractJSONFromHiveTable$$anonfun$1.class" afterPath="$PROJECT_DIR$/target/streams/$global/assemblyOption/$global/streams/assembly/df0c7a8388725eee36937626414ef5061f2b10f1_dir/ExtractJSONFromHiveTable$$anonfun$1.class" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/assemblyOption/$global/streams/assembly/df0c7a8388725eee36937626414ef5061f2b10f1_dir/ExtractJSONFromHiveTable$.class" afterPath="$PROJECT_DIR$/target/streams/$global/assemblyOption/$global/streams/assembly/df0c7a8388725eee36937626414ef5061f2b10f1_dir/ExtractJSONFromHiveTable$.class" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/assemblyOption/$global/streams/assembly/df0c7a8388725eee36937626414ef5061f2b10f1_dir/ExtractJSONFromHiveTable.class" afterPath="$PROJECT_DIR$/target/streams/$global/assemblyOption/$global/streams/assembly/df0c7a8388725eee36937626414ef5061f2b10f1_dir/ExtractJSONFromHiveTable.class" />
       <change beforePath="$PROJECT_DIR$/target/streams/$global/ivyConfiguration/$global/streams/out" afterPath="$PROJECT_DIR$/target/streams/$global/ivyConfiguration/$global/streams/out" />
-      <change beforePath="$PROJECT_DIR$/target/streams/compile/$global/$global/discoveredMainClasses/data" afterPath="$PROJECT_DIR$/target/streams/compile/$global/$global/discoveredMainClasses/data" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/out" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/out" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/update_cache_2.11/output" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/update_cache_2.11/output" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/streams/out" afterPath="" />
       <change beforePath="$PROJECT_DIR$/target/streams/compile/compile/$global/streams/out" afterPath="$PROJECT_DIR$/target/streams/compile/compile/$global/streams/out" />
       <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/$global/streams/inc_compile_2.11.zip" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/$global/streams/inc_compile_2.11.zip" />
       <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/export" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/export" />
-      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/out" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/out" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -75,10 +87,10 @@
       <file leaf-file-name="ExtractJSONFromHiveTable.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/ExtractJSONFromHiveTable.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+            <state relative-caret-position="364">
+              <caret line="46" column="1" lean-forward="true" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
               <folding>
-                <element signature="e#0#49#0" expanded="true" />
+                <element signature="e#0#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -87,8 +99,8 @@
       <file leaf-file-name="GenerateTripHistory.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/GenerateTripHistory.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+            <state relative-caret-position="221">
+              <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -117,10 +129,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="810" />
+    <option name="height" value="812" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -197,7 +210,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ExtractJSONFromHiveTable">
+  <component name="RunManager" selected="Scala Console.Scala Console">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -254,6 +267,12 @@
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
     </configuration>
+    <configuration name="Scala Console" type="ScalaScriptConsoleRunConfiguration" factoryName="Scala Console" temporary="true">
+      <module name="workingwithhive" />
+      <setting name="vmparams4" value="-Djline.terminal=NONE" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="consoleArgs" value="-usejavacp" />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -272,19 +291,21 @@
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.ETLIntoHive" />
       <item index="1" class="java.lang.String" itemvalue="Application.ExtractJSONFromHiveTable" />
+      <item index="2" class="java.lang.String" itemvalue="Scala Console.Scala Console" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.ExtractJSONFromHiveTable" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ETLIntoHive" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Scala Console.Scala Console" />
+        <item index="1" class="java.lang.String" itemvalue="Application.ExtractJSONFromHiveTable" />
+        <item index="2" class="java.lang.String" itemvalue="Application.ETLIntoHive" />
       </list>
     </recent_temporary>
   </component>
   <component name="SbtLocalSettings">
-    <option name="lastUpdateTimestamp" value="1513095173211" />
+    <option name="lastUpdateTimestamp" value="1513174916614" />
     <option name="availableProjects">
       <map>
         <entry>
@@ -330,18 +351,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="810" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="810" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="sbt" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22532189" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="sbt" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16237482" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34405595" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27832168" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26037195" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -439,8 +461,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/GenerateTripHistory.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        <state relative-caret-position="221">
+          <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
@@ -449,10 +471,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/ExtractJSONFromHiveTable.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+        <state relative-caret-position="364">
+          <caret line="46" column="1" lean-forward="true" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
           <folding>
-            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>

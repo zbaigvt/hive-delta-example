@@ -1,6 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/zbaig/zbaig/scala/WorkingwithHive/src/main/scala/ExtractJSONFromHiveTable.scala:21:68: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : org.apache.spark.sql.Column[0m
-[0m[[0m[31merror[0m] [0m[0m required: String[0m
-[0m[[0m[31merror[0m] [0m[0m    val record = jsonData.select(jsonData("type"), jsonData(explode(jsonData("events.values"))))[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                   ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
