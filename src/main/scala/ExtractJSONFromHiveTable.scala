@@ -1,7 +1,7 @@
 import org.apache.spark.sql.{Row, SaveMode}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.functions.explode
-import org.apache.spark.sql.types.{StringType, StructField, StructType}
+import org.apache.spark.sql.types._
 
 object ExtractJSONFromHiveTable {
 
@@ -99,8 +99,8 @@ object ExtractJSONFromHiveTable {
 
     val timeBlocksRecord = jsonData.select(
                                        jsonData("document_id").alias("time_doc_id"),
-                                       jsonData("time_blocks.values.from_time").getItem(0),
-                                       jsonData("time_blocks.values.to_time").getItem(0),
+                                       jsonData("time_blocks.values.from_time").getItem(0).alias("from_time"),
+                                       jsonData("time_blocks.values.to_time").getItem(0).alias("to_time"),
                                         explode(jsonData("time_blocks.values.day")).alias("days"))
 
 
@@ -112,48 +112,83 @@ object ExtractJSONFromHiveTable {
     val joinEvents = masterRecord.join(eventsRecord,masterRecord("master_doc_id")===eventsRecord("event_doc_id"), "left_outer")
     val joinEmail = joinEvents.join(emailNotificationRecord,joinEvents("master_doc_id")===emailNotificationRecord("email_doc_id"),"left_outer")
     val joinNotifyTypes = joinEmail.join(notificationTypesRecord,joinEmail("master_doc_id")===notificationTypesRecord("notify_doc_id"),"left_outer")
+    val joinTimeBlocks = joinNotifyTypes.join(timeBlocksRecord,joinNotifyTypes("notify_doc_id")===timeBlocksRecord("time_doc_id"),"left_outer")
 
 
+    //	0	 |-- master_doc_id: string (nullable = true)
+    //	1	 |-- type: string (nullable = true)
+    //	2	 |-- subscription_id: string (nullable = true)
+    //	3	 |-- access_schedule_id: string (nullable = true)
+    //	4	 |-- account_users: string (nullable = true)
+    //	5	 |-- access_groups: string (nullable = true)
+    //	6	 |-- nest_zone_ids: string (nullable = true)
+    //	7	 |-- name: string (nullable = true)
+    //	8	 |-- enabled: boolean (nullable = true)
+    //	9	 |-- notification_delay_minutes: long (nullable = true)
+    //	10	 |-- created_on_time: string (nullable = true)
+    //	11	 |-- updated_on_time: string (nullable = true)
+    //	12	 |-- device_serial_numbers: string (nullable = true)
+    //	13	 |-- event_doc_id: string (nullable = true)
+    //	14	 |-- events: string (nullable = true)
+    //	15	 |-- email_doc_id: string (nullable = true)
+    //	16	 |-- email_notification_list: string (nullable = true)
+    //	17	 |-- notify_doc_id: string (nullable = true)
+    //	18	 |-- notification_types: string (nullable = true)
+    //	19	 |-- time_doc_id: string (nullable = true)
+    //	20	 |-- from_time: string (nullable = true)
+    //	21	 |-- to_time: string (nullable = true)
+    //	22	 |-- days: string (nullable = true)
 
     // Convert records of the RDD to Rows.
-    val rowRDD = joinNotifyTypes.map(r => Row(r.getString(0),
+    val rowRDD = joinTimeBlocks.map(r => Row(r.getString(0),
                                             r.getString(1),
                                             r.getString(2),
                                             r.getString(3),
                                             r.getString(4),
-                                            r.getString(6)))
+                                            r.getString(5),
+                                            r.getString(6),
+                                            r.getString(7),
+                                            r.getBoolean(8),
+                                            r.getLong(9),
+                                            r.getString(10),
+                                            r.getString(11),
+                                            r.getString(12),
+                                            r.getString(14), //event //13 is event_doc_id
+                                            r.getString(14),//event
+                                            r.getString(14), //event
+                                            r.getString(14), //event
+                                            r.getString(16), //email_notifications_list 15 is email_doc_id
+                                            r.getString(18), //notification_types
+                                            r.getString(18), //notification_types
+                                            r.getString(20),
+                                            r.getString(21),
+                                            r.getString(22)) //days
+                                          )
 
     // Generate the schema
     val schema = StructType(Array(StructField("document_id",StringType,true),
-                                  StructField("name",StringType,true),
                                   StructField("type",StringType,true),
                                   StructField("subscription_id",StringType,true),
                                   StructField("access_schedule_id",StringType,true),
                                   StructField("account_users",StringType,true),
                                   StructField("access_groups",StringType,true),
-                                  StructField("email_notification_list",StringType,true),
                                   StructField("nest_zone_ids",StringType,true),
-                                  StructField("enabled",StringType,true),
-                                  StructField("notification_delay_minutes",StringType,true),
+                                  StructField("name",StringType,true),
+                                  StructField("enabled",BooleanType,true),
+                                  StructField("notification_delay_minutes",LongType,true),
+                                  StructField("created_on_time",StringType,true),
+                                  StructField("updated_on_time",StringType,true),
+                                  StructField("device_serial_number",StringType,true),
                                   StructField("event_open",StringType,true),
                                   StructField("event_close",StringType,true),
                                   StructField("events_on",StringType,true),
                                   StructField("event_off",StringType,true),
-                                  StructField("access_events",StringType,true),
-                                  StructField("days_of_week",StringType,true),
-                                  StructField("from_time",StringType,true),
-                                  StructField("to_time",StringType,true),
-                                  StructField("account_user_id",StringType,true),
-                                  StructField("device_serial_number",StringType,true),
+                                  StructField("email_notification_list",StringType,true),
                                   StructField("push_notification",StringType,true),
                                   StructField("email_notification",StringType,true),
-                                  StructField("created_on_time",StringType,true),
-                                  StructField("updated_on_time",StringType,true),
-                                  StructField("is_default",StringType,true),
-                                  StructField("entry_code_uses_exceeded",StringType,true),
-                                  StructField("entry_code_uses_exceeded_id",StringType,true),
-                                  StructField("entry_code_uses_exceeded_amount",StringType,true),
-                                  StructField("entry_code_uses_exceeded_time_period",StringType,true)
+                                  StructField("from_time",StringType,true),
+                                  StructField("to_time",StringType,true),
+                                  StructField("days_of_week",StringType,true)
                                 )
                           )
 
