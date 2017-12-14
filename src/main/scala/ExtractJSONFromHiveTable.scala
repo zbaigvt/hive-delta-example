@@ -61,6 +61,14 @@ object ExtractJSONFromHiveTable {
     builder.toString
   }
 
+  def convertStringToBoolean(string: String, refString: String) : Boolean = {
+    if(string.equals(refString))
+      return true
+    else
+      return false
+  }
+
+
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf().setAppName(appName)//.setMaster(master)
@@ -153,13 +161,13 @@ object ExtractJSONFromHiveTable {
                                             r.getString(10),
                                             r.getString(11),
                                             r.getString(12),
-                                            r.getString(14), //event //13 is event_doc_id
-                                            r.getString(14),//event
-                                            r.getString(14), //event
-                                            r.getString(14), //event
+                                            convertStringToBoolean(r.getString(14).toLowerCase, "open"),
+                                            convertStringToBoolean(r.getString(14).toLowerCase, "closed"),
+                                            convertStringToBoolean(r.getString(14).toLowerCase, "on"),
+                                            convertStringToBoolean(r.getString(14).toLowerCase, "off"),
                                             r.getString(16), //email_notifications_list 15 is email_doc_id
-                                            r.getString(18), //notification_types
-                                            r.getString(18), //notification_types
+                                            convertStringToBoolean(r.getString(18).toLowerCase,"pushnotification"), //notification_types﻿PushNotification
+                                            convertStringToBoolean(r.getString(18).toLowerCase,"email"), //notification_types ﻿Email
                                             r.getString(20),
                                             r.getString(21),
                                             r.getString(22)) //days
@@ -179,13 +187,13 @@ object ExtractJSONFromHiveTable {
                                   StructField("created_on_time",StringType,true),
                                   StructField("updated_on_time",StringType,true),
                                   StructField("device_serial_number",StringType,true),
-                                  StructField("event_open",StringType,true),
-                                  StructField("event_close",StringType,true),
-                                  StructField("events_on",StringType,true),
-                                  StructField("event_off",StringType,true),
+                                  StructField("event_open",BooleanType,true),
+                                  StructField("event_closed",BooleanType,true),
+                                  StructField("events_on",BooleanType,true),
+                                  StructField("event_off",BooleanType,true),
                                   StructField("email_notification_list",StringType,true),
-                                  StructField("push_notification",StringType,true),
-                                  StructField("email_notification",StringType,true),
+                                  StructField("push_notification",BooleanType,true),
+                                  StructField("email_notification",BooleanType,true),
                                   StructField("from_time",StringType,true),
                                   StructField("to_time",StringType,true),
                                   StructField("days_of_week",StringType,true)
