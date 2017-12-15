@@ -1,6 +1,7 @@
 import org.apache.spark.sql.{Row, SaveMode}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.functions.explode
+import org.apache.spark.sql.functions.concat_ws
 import org.apache.spark.sql.types._
 
 object ExtractJSONFromHiveTable {
@@ -10,46 +11,46 @@ object ExtractJSONFromHiveTable {
   // The schema is encoded in a string
   val schemaString = "name type subscription_id"
 
-  def convertScheduleToString(scheduleList: java.util.List[Nothing]): String = {
+  def convertScheduleToString(days: String): String = {
     val builder = StringBuilder.newBuilder;
-    if(scheduleList != null && !scheduleList.isEmpty) {
-      if(scheduleList.contains("monday")) {
+    if(days != null) {
+      if(days.contains("Monday")) {
         builder.append("M")
       }
       else  {
         builder.append("m")
       }
-      if(scheduleList.contains("tuesday")) {
+      if(days.contains("Tuesday")) {
         builder.append("T")
       }
       else  {
         builder.append("t")
       }
-      if(scheduleList.contains("wednesday")) {
+      if(days.contains("Wednesday")) {
         builder.append("W")
       }
       else  {
         builder.append("w")
       }
-      if(scheduleList.contains("thursday")) {
+      if(days.contains("Thursday")) {
         builder.append("R")
       }
       else  {
         builder.append("r")
       }
-      if(scheduleList.contains("friday")) {
+      if(days.contains("Friday")) {
         builder.append("F")
       }
       else  {
         builder.append("f")
       }
-      if(scheduleList.contains("saturday")) {
+      if(days.contains("Saturday")) {
         builder.append("S")
       }
       else  {
         builder.append("s")
       }
-      if(scheduleList.contains("sunday")) {
+      if(days.contains("Sunday")) {
         builder.append("U")
       }
       else  {
@@ -67,7 +68,6 @@ object ExtractJSONFromHiveTable {
     else
       return false
   }
-
 
   def main(args: Array[String]): Unit = {
 
@@ -109,14 +109,12 @@ object ExtractJSONFromHiveTable {
                                        jsonData("document_id").alias("time_doc_id"),
                                        jsonData("time_blocks.values.from_time").getItem(0).alias("from_time"),
                                        jsonData("time_blocks.values.to_time").getItem(0).alias("to_time"),
-                                        explode(jsonData("time_blocks.values.day")).alias("days"))
-
+                                       concat_ws(",",jsonData("time_blocks.values.day")).alias("days"))
 
     val notificationTypesRecord =  jsonData.select(
                                        jsonData("document_id").alias("notify_doc_id"),
                                        explode(jsonData("notification_types.values")).alias("notification_types"))
 
-    //TODO join RDDs to produce one result + update schema with new changes
     val joinEvents = masterRecord.join(eventsRecord,masterRecord("master_doc_id")===eventsRecord("event_doc_id"), "left_outer")
     val joinEmail = joinEvents.join(emailNotificationRecord,joinEvents("master_doc_id")===emailNotificationRecord("email_doc_id"),"left_outer")
     val joinNotifyTypes = joinEmail.join(notificationTypesRecord,joinEmail("master_doc_id")===notificationTypesRecord("notify_doc_id"),"left_outer")
@@ -170,7 +168,7 @@ object ExtractJSONFromHiveTable {
                                             convertStringToBoolean(r.getString(18).toLowerCase,"email"), //notification_types ﻿Email
                                             r.getString(20),
                                             r.getString(21),
-                                            r.getString(22)) //days
+                                            convertScheduleToString(r.getString(22))) //days //TODO convert to String
                                           )
 
     // Generate the schema
