@@ -12,7 +12,7 @@ object ExtractJSONFromHiveTable {
   val schemaString = "name type subscription_id"
 
   def convertScheduleToString(days: String): String = {
-    val builder = StringBuilder.newBuilder;
+    val builder = StringBuilder.newBuilder
     if(days != null) {
       if(days.contains("Monday")) {
         builder.append("M")
@@ -62,12 +62,14 @@ object ExtractJSONFromHiveTable {
     builder.toString
   }
 
-  def convertStringToBoolean(string: String, refString: String) : Boolean = {
-    if(string.equals(refString))
+  def convertStringToBoolean(dataParam: String, refString: String) : Boolean = {
+    if(dataParam.equals(refString))
       return true
     else
       return false
   }
+  //TODO remove explodes and replce with concat_ws
+  // Remove explodes from devices as well
 
   def main(args: Array[String]): Unit = {
 
@@ -94,16 +96,16 @@ object ExtractJSONFromHiveTable {
                                    jsonData("notification_delay_minutes"),
                                    jsonData("created_on_time"),
                                    jsonData("updated_on_time"),
-                                   explode(jsonData("device_serial_numbers.values")).alias("device_serial_numbers")
+                                   concat_ws(",",(jsonData("device_serial_numbers.values"))).alias("device_serial_numbers")
                                    )
 
     val eventsRecord = jsonData.select(
                                     jsonData("document_id").alias("event_doc_id"),
-                                    explode(jsonData("events.values")).alias("events"))
+                                    concat_ws(",",jsonData("events.values")).alias("events"))
 
     val emailNotificationRecord =  jsonData.select(
                                          jsonData("document_id").alias("email_doc_id"),
-                                         explode(jsonData("email_notification_list.values")).alias("email_notification_list"))
+                                         concat_ws(",",jsonData("email_notification_list.values")).alias("email_notification_list"))
 
     val timeBlocksRecord = jsonData.select(
                                        jsonData("document_id").alias("time_doc_id"),
@@ -113,7 +115,7 @@ object ExtractJSONFromHiveTable {
 
     val notificationTypesRecord =  jsonData.select(
                                        jsonData("document_id").alias("notify_doc_id"),
-                                       explode(jsonData("notification_types.values")).alias("notification_types"))
+                                       concat_ws(",",jsonData("notification_types.values")).alias("notification_types"))
 
     val joinEvents = masterRecord.join(eventsRecord,masterRecord("master_doc_id")===eventsRecord("event_doc_id"), "left_outer")
     val joinEmail = joinEvents.join(emailNotificationRecord,joinEvents("master_doc_id")===emailNotificationRecord("email_doc_id"),"left_outer")
@@ -168,7 +170,7 @@ object ExtractJSONFromHiveTable {
                                             convertStringToBoolean(r.getString(18).toLowerCase,"email"), //notification_types ﻿Email
                                             r.getString(20),
                                             r.getString(21),
-                                            convertScheduleToString(r.getString(22))) //days //TODO convert to String
+                                            convertScheduleToString(r.getString(22)))
                                           )
 
     // Generate the schema
