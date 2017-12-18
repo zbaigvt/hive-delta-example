@@ -1,10 +1,12 @@
-[0m[[0m[0minfo[0m] [0m[0mIncluding from cache: jackson-core-2.6.3.jar[0m
-[0m[[0m[0minfo[0m] [0m[0mIncluding from cache: jackson-annotations-2.6.0.jar[0m
-[0m[[0m[0minfo[0m] [0m[0mIncluding from cache: jackson-databind-2.6.3.jar[0m
-[0m[[0m[0minfo[0m] [0m[0mIncluding from cache: scala-library-2.11.12.jar[0m
+[0m[[0m[0minfo[0m] [0m[0mIncluding: jackson-annotations-2.6.0.jar[0m
+[0m[[0m[0minfo[0m] [0m[0mIncluding: jackson-core-2.6.3.jar[0m
+[0m[[0m[0minfo[0m] [0m[0mIncluding: jackson-databind-2.6.3.jar[0m
+[0m[[0m[0minfo[0m] [0m[0mIncluding: scala-library-2.11.12.jar[0m
 [0m[[0m[0mdebug[0m] [0m[0mCalculate mappings...[0m
 [0m[[0m[0minfo[0m] [0m[0mChecking every *.class/*.jar file's SHA-1.[0m
 [0m[[0m[0minfo[0m] [0m[0mMerging files...[0m
+[0m[[0m[33mwarn[0m] [0m[0mMerging 'META-INF/NOTICE' with strategy 'rename'[0m
+[0m[[0m[33mwarn[0m] [0m[0mMerging 'META-INF/LICENSE' with strategy 'rename'[0m
 [0m[[0m[33mwarn[0m] [0m[0mMerging 'META-INF/MANIFEST.MF' with strategy 'discard'[0m
 [0m[[0m[33mwarn[0m] [0m[0mMerging 'META-INF/maven/com.fasterxml.jackson.core/jackson-annotations/pom.properties' with strategy 'discard'[0m
 [0m[[0m[33mwarn[0m] [0m[0mMerging 'META-INF/maven/com.fasterxml.jackson.core/jackson-annotations/pom.xml' with strategy 'discard'[0m
@@ -13,7 +15,8 @@
 [0m[[0m[33mwarn[0m] [0m[0mMerging 'META-INF/maven/com.fasterxml.jackson.core/jackson-databind/pom.properties' with strategy 'discard'[0m
 [0m[[0m[33mwarn[0m] [0m[0mMerging 'META-INF/maven/com.fasterxml.jackson.core/jackson-databind/pom.xml' with strategy 'discard'[0m
 [0m[[0m[33mwarn[0m] [0m[0mStrategy 'discard' was applied to 7 files[0m
-[0m[[0m[0minfo[0m] [0m[0mSHA-1: f8f84223c200427bff7cffaea0732cc5a1ad1ffe[0m
+[0m[[0m[33mwarn[0m] [0m[0mStrategy 'rename' was applied to 2 files[0m
+[0m[[0m[0minfo[0m] [0m[0mSHA-1: b2a14da441f70fa1947cc0c57fe54d6c64df502a[0m
 [0m[[0m[0minfo[0m] [0m[0mPackaging /Users/zbaig/zbaig/scala/WorkingwithHive/target/scala-2.11/WorkingwithHive-assembly-0.1.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	ETLIntoHive$.class[0m
