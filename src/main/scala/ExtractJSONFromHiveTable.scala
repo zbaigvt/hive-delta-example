@@ -5,10 +5,10 @@ import org.apache.spark.sql.types._
 
 object ExtractJSONFromHiveTable {
 
-  var appName = "ExtractJSONFromHiveTable"
-  var master = "local"
+  var appName = "Spark_Notification_Ingestion"
+  var master = "yarn-cluster"
 
-
+  //Function to build single String for time blocks Monday, Tuesday, Wednesday etc etc will return as MTW...
   def convertScheduleToString(days: String): String = {
     val builder = StringBuilder.newBuilder
     if(days != null) {
@@ -60,6 +60,7 @@ object ExtractJSONFromHiveTable {
     builder.toString
   }
 
+  //Function to convert String to Boolean
   def convertStringToBoolean(dataParam: String, refString: String) : Boolean = {
     if(dataParam.equals(refString))
       return true
@@ -67,6 +68,7 @@ object ExtractJSONFromHiveTable {
       return false
   }
 
+  //Main method
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf().setAppName(appName).setMaster(master)
@@ -74,11 +76,12 @@ object ExtractJSONFromHiveTable {
     val hc = new org.apache.spark.sql.hive.HiveContext(sc)
 
     // Read data from Hive table.adding document_id to JSON structure to easily retrieve later in jsonData RDD
-    val notificationsData = hc.sql("select concat('{\"document_id\":','\"',document_id,'\", ',substring(document,2)) as document from myqdatawarehouse.myquserdata_entry where instr(document_id, 'subscription_') != 0 ")
+    val notificationsData = hc.sql("select concat('{\"document_id\":','\"',document_id,'\", ',substring(document,2)) as document from couchbase_pre_prod.myquserdata_entry where instr(document_id, 'subscription_') != 0 ")
 
     //Convert it to JSON
     val jsonData = hc.read.json(notificationsData.map{r=> r.getString(0)})
 
+    //Extract JSON elements
     val notificationRecord   =  jsonData.select(
                                    jsonData("document_id"),
                                    jsonData("type"),
@@ -88,10 +91,10 @@ object ExtractJSONFromHiveTable {
                                    concat_ws(",",jsonData("access_events.values")).alias("access_events"),
                                    concat_ws(",",jsonData("access_groups.values")).alias("access_groups"),
                                    concat_ws(",",jsonData("email_notification_list.values")).alias("email_notification_list"),
-                                   jsonData("nest_zone_ids"),
+                                   concat_ws(",",jsonData("nest_zone_ids.values").cast(StringType)).alias("nest_zone_ids"), //converting to String
                                    jsonData("name"),
                                    jsonData("enabled"),
-                                   jsonData("notification_delay_minutes").cast(StringType), //converting long to String due to null values
+                                   jsonData("notification_delay_minutes").cast(StringType).alias("notification_delay_minutes"), //converting long to String due to null values
                                    concat_ws(",",jsonData("events.values")).alias("events"),
                                    jsonData("time_blocks.values.from_time").getItem(0).alias("from_time"),
                                    jsonData("time_blocks.values.to_time").getItem(0).alias("to_time"),
@@ -101,50 +104,94 @@ object ExtractJSONFromHiveTable {
                                    concat_ws(",",jsonData("notification_types.values")).alias("notification_types"),
                                    jsonData("is_default"),
                                    jsonData("entry_code_uses_exceeded"),
-                                   jsonData("entry_code_uses_exceeded_amount").cast(StringType), //converting long to String due to null values
+                                   jsonData("entry_code_uses_exceeded_amount").cast(StringType).alias("entry_code_uses_exceeded_amount"), //converting long to String due to null values
                                    jsonData("entry_code_uses_exceeded_id"),
-                                   jsonData("entry_code_uses_exceeded_time_period").cast(StringType), //converting long to String due to null values
+                                   jsonData("entry_code_uses_exceeded_time_period").cast(StringType).alias("entry_code_uses_exceeded_time_period"), //converting long to String due to null values
                                    jsonData("created_on_time"),
                                    jsonData("created_by_user_id"),
                                    jsonData("updated_on_time"),
                                    jsonData("_corrupt_record"),
                                    jsonData("allZones"),
                                    concat_ws(",",jsonData("recipientUserIds.values")).alias("recipientUserIds"),
-                                   concat_ws(",",jsonData("zones.values")).alias("zones")
-                                   )
+                                   concat_ws(",",jsonData("zones.values")).alias("zones"),
+                                   jsonData("nest_zones"),
+                                   jsonData("isChanged"),
+                                   jsonData("device_type")
+                                  )
 
-   /* root
-    |-- document_id: string (nullable = true)
-    |-- type: string (nullable = true)
-    |-- subscription_id: string (nullable = true)
-    |-- access_schedule_id: string (nullable = true)
-    |-- account_users: string (nullable = false)
-    |-- access_events: string (nullable = false)
-    |-- access_groups: string (nullable = false)
-    |-- email_notification_list: string (nullable = false)
-    |-- nest_zone_ids: string (nullable = true)
-    |-- name: string (nullable = true)
-    |-- enabled: boolean (nullable = true)
-    |-- notification_delay_minutes: string (nullable = true)
-    |-- events: string (nullable = false)
-    |-- from_time: string (nullable = true)
-    |-- to_time: string (nullable = true)
-    |-- days: string (nullable = false)
-    |-- account_user_id: string (nullable = true)
-    |-- device_serial_numbers: string (nullable = false)
-    |-- notification_types: string (nullable = false)
-    |-- is_default: boolean (nullable = true)
-    |-- entry_code_uses_exceeded: boolean (nullable = true)
-    |-- entry_code_uses_exceeded_amount:  string (nullable = false)
-    |-- entry_code_uses_exceeded_id: string (nullable = true)
-    |-- entry_code_uses_exceeded_time_period:  string (nullable = false)
-    |-- created_on_time: string (nullable = true)
-    |-- created_by_user_id: string (nullable = true)
-    |-- updated_on_time: string (nullable = true)
-    |-- _corrupt_record: string (nullable = true)
-    |-- allZones: boolean (nullable = true)
-    |-- recipientUserIds: string (nullable = false)
-    |-- zones: string (nullable = false)
+   /*
+root
+ |-- _corrupt_record: string (nullable = true)
+ |-- access_events: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- values: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ |-- access_groups: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- values: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ |-- access_schedule_id: string (nullable = true)
+ |-- account_user_id: string (nullable = true)
+ |-- account_users: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- values: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ |-- allZones: boolean (nullable = true)
+ |-- created_by_user_id: string (nullable = true)
+ |-- created_on_time: string (nullable = true)
+ |-- device_serial_number: string (nullable = true)
+ |-- device_serial_numbers: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- values: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ x|-- device_type: string (nullable = true)
+ |-- document_id: string (nullable = true)
+ |-- email_notification_list: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- values: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ |-- enabled: boolean (nullable = true)
+ |-- entry_code_uses_exceeded: boolean (nullable = true)
+ |-- entry_code_uses_exceeded_amount: long (nullable = true)
+ |-- entry_code_uses_exceeded_id: string (nullable = true)
+ |-- entry_code_uses_exceeded_time_period: long (nullable = true)
+ |-- events: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- values: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ x|-- isChanged: boolean (nullable = true)
+ |-- is_default: boolean (nullable = true)
+ |-- name: string (nullable = true)
+ x|-- nest_zone_ids: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- values: array (nullable = true)
+ |    |    |-- element: long (containsNull = true)
+ x|-- nest_zones: string (nullable = true)
+ |-- notification_delay_minutes: long (nullable = true)
+ |-- notification_types: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- values: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ |-- recipientUserIds: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- values: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ |-- subscription_id: string (nullable = true)
+ |-- time_blocks: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- values: array (nullable = true)
+ |    |    |-- element: struct (containsNull = true)
+ |    |    |    |-- day: string (nullable = true)
+ |    |    |    |-- from_time: string (nullable = true)
+ |    |    |    |-- to_time: string (nullable = true)
+ |    |    |    |-- type: string (nullable = true)
+ |-- type: string (nullable = true)
+ |-- updated_on_time: string (nullable = true)
+ |-- zones: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- values: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+
     */
 
     // Convert records of the RDD to Rows.
@@ -157,10 +204,12 @@ object ExtractJSONFromHiveTable {
                     r.getAs[String]("access_events"),
                     r.getAs[String]("access_groups"),
                     r.getAs[String]("email_notification_list"),
+                    r.getAs[String]("nest_zones"),
                     r.getAs[String]("nest_zone_ids"),
                     r.getAs[String]("name"),
                     r.getAs[Boolean]("enabled"),
                     r.getAs[String]("device_serial_numbers"),
+                    r.getAs[String]("device_type"),
                     r.getAs[String]("account_user_id"),
                     r.getAs[String]("notification_delay_minutes"),
                     convertStringToBoolean(r.getAs[String]("events").toLowerCase, "open"), //event open
@@ -173,6 +222,7 @@ object ExtractJSONFromHiveTable {
                     r.getAs[String]("to_time"),
                     convertScheduleToString(r.getAs[String]("days")),
                     r.getAs[Boolean]("is_default"),
+                    r.getAs[Boolean]("isChanged"),
                     r.getAs[Boolean]("entry_code_uses_exceeded"),
                     r.getAs[String]("entry_code_uses_exceeded_amount"),
                     r.getAs[String]("entry_code_uses_exceeded_id"),
@@ -195,15 +245,17 @@ object ExtractJSONFromHiveTable {
                                   StructField("access_events",StringType,true),
                                   StructField("access_groups",StringType,true),
                                   StructField("email_notification_list",StringType,true),
+                                  StructField("nest_zones",StringType,true),
                                   StructField("nest_zone_ids",StringType,true),
                                   StructField("name",StringType,true),
                                   StructField("enabled",BooleanType,true),
-                                  StructField("device_serial_number",StringType,true),
-                                  StructField("account_user_id",StringType,true),
+                                  StructField("serialnumber",StringType,true),
+                                  StructField("device_type",StringType,true),
+                                  StructField("accountuserid",StringType,true),
                                   StructField("notification_delay_minutes",StringType,true),
                                   StructField("event_open",BooleanType,true),
                                   StructField("event_closed",BooleanType,true),
-                                  StructField("events_on",BooleanType,true),
+                                  StructField("event_on",BooleanType,true),
                                   StructField("event_off",BooleanType,true),
                                   StructField("push_notification",BooleanType,true),
                                   StructField("email_notification",BooleanType,true),
@@ -211,6 +263,7 @@ object ExtractJSONFromHiveTable {
                                   StructField("to_time",StringType,true),
                                   StructField("days_of_week",StringType,true),
                                   StructField("is_default",BooleanType,true),
+                                  StructField("is_changed",BooleanType,true),
                                   StructField("entry_code_uses_exceeded",BooleanType,true),
                                   StructField("entry_code_uses_exceeded_amount",StringType,true),
                                   StructField("entry_code_uses_exceeded_id",StringType,true),
@@ -232,7 +285,7 @@ object ExtractJSONFromHiveTable {
 
     notificationDataFrame.write.mode(SaveMode.Overwrite).saveAsTable("myqdatawarehouse.notifications")
 
-    println("Process Completed ")
+    println("Notification Process Completed")
   }
 
 }
