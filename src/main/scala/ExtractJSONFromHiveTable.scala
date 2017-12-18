@@ -67,8 +67,6 @@ object ExtractJSONFromHiveTable {
       return false
   }
 
-  //TODO do complate schema
-
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf().setAppName(appName).setMaster(master)
